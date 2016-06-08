@@ -22,8 +22,10 @@ also extend Futures with orFLeft (check the notZero method)
 ```scala
 
 object Cases {
+   
+   case class User(name: String, lang: String)	
 
-
+   //return an User or some http error
    def getUser(name: String): >>>[User] = Future {
       //simulating retrieving from async db
       if (name == "donald")
@@ -32,6 +34,7 @@ object Cases {
          Right(User(name, "scala,clojure,js"))
    }
 
+   //return an Int or some http error
    def getFriendsCountFromExternalServer(name: String): >>>[Int] = Future {
       //simulating contact external server 20% fails
       if (shuffle(1 to 5).head == 5)
@@ -45,6 +48,7 @@ object Cases {
    }
 
 
+   //this extends the Future object...can be cool in some cases!!
    def notZero(v: Int): >>>[Int] = Future {
       //util for wrap when futures can fail....
       10 / v
@@ -57,6 +61,7 @@ class PingController extends Controller {
    import Cases._
 
    get("/blah") { r: Request =>
+      //if some step fails return the http error for that step!!...just monad love!!!....
       (for {
          v <- <<<(getUser(r.getParam("name")))
          _ <- <<<(notZero(r.getIntParam("number")))
