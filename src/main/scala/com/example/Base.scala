@@ -69,61 +69,11 @@ object Base {
 
    }
 
-
-   /*   case class doOrResp[+A,H <: HttpLogicResponses](fut : Future[Or[A,H]]) {
-         def flatMap[A2](f: A => FOr[A2, H]): FOr[A2, H] = {
-            val _r = fut.flatMap {
-               case Good(r) => f(r).fut
-               case Bad(b) => Future(Bad(b))
-            }
-            FOr(_r)
-         }
-   
-         def map[A2](f: A => A2): FOr[A2, H] = {
-            val _f = this.fut.map {
-               case Good(b) => Good(f(b))
-               case Bad(e) => Bad(e)
-            }
-            FOr(_f)
-         }
-   
-   
-         def build (r : ResponseBuilder)(block : (A)=> ResponseBuilder#EnrichedResponse) = {
-            fut.map{
-               case Good(v) => block(v)
-               case Bad(e) => e.generateResponse(r)
-            }
-         }
-      }*/
+ 
 
    case class Ba(f: Future[ErrorResponseBuilder])
 
-   /*   case class FOr[A,H <: HttpLogicResponses](fut : Future[Or[A,H]]) {
-         def flatMap[A2,B<:HttpLogicResponses](f: A => FOr[A2, B]): FOr[A2, B] = {
-            val _r = fut.flatMap {
-               case Good(r) => f(r).fut
-               case Bad(b) => Future(Bad(b))
-            }
-            FOr(_r)
-         }
-   
-         def map[A2](f: A => A2): FOr[A2, H] = {
-            val _f = this.fut.map {
-               case Good(b) => Good(f(b))
-               case Bad(e) => Bad(e)
-            }
-            FOr(_f)
-   
-   
-   
-         def build(r : ResponseBuilder)(block : (A)=> ResponseBuilder#EnrichedResponse)= {
-            fut.map{
-               case Good(v) => block(v)
-               case Bad(e) => e.generateResponse(r)
-            }
-         }
-      }
-      }*/
+  
 
 
    implicit class FutureOrBuilder[+A](f: Future[A]) {
@@ -140,28 +90,6 @@ object Base {
       }
    }
 
-   /*
-   @deprecated
-   case class FutureOr[G, E](fut: Future[Or[G, E]]) {
-     def flatMap[G2](f: G => FutureOr[G2, E]): FutureOr[G2, E] = {
-        val _r = fut.flatMap {
-           case Good(r) => f(r).fut
-           case Bad(b) => Future(Bad(b))
-        }
-        FutureOr(_r)
-     }
-   
-     def map[G2](f: G => G2): FutureOr[G2, E] = {
-        val _f = this.fut.map {
-           case Good(b) => Good(f(b))
-           case Bad(e) => Bad(e)
-        }
-        FutureOr(_f)
-     }
-   
-   
-   }
-     */
-}
+ 
 
 
