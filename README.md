@@ -1,12 +1,20 @@
-this is a small example about how compose futures and either in finatra/scala enabling a nice syntax sugar and terse error handling
+this is a small example about how compose futures and either monads in finatra/scala enabling a nice syntax sugar and terse error handling
 
-this includes its own syntax for future either and some implementations of http error codes
+this includes its own syntax for future either monad and some implementations of http error codes
 
 for instance 
 
 Left(Unauthorized("you can't access here")) will return a 401 code with the text you can't access
 
 also extend Futures with orFLeft (check the notZero method)
+
+**WHY TE UGLY ARROWS >>> 
+Because I love back to future and it looks a bit like the arrow in the movie...and you know..back to FUTURE...FUTURE monad...
+
+
+![movie-title] (https://upload.wikimedia.org/wikipedia/id/7/71/Back_to_the_Future_logo.png)
+
+
 
 
 ```scala
