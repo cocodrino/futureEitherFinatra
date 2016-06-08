@@ -1,0 +1,14 @@
+.DS_Store
+activator
+activator.bat
+activator-launch-1.3.2.jar
+src/main/scala/com/example/borrar
+.idea
+*.iml
+*.ipr
+*.log
+.sbtserver*
+sbt-ui.sbt
+classes/
+target/
+sbt-launch.jar
